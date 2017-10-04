@@ -39,13 +39,22 @@
 				type: String,
 				value: null
 			},
-			token: String,
+			token: {
+				type: String,
+				observer: '_tokenChanged'
+			},
 			_headers: String
 		},
 
 		observers: [
 			'_onImageUrlChange( imageUrl, token )'
 		],
+
+		_tokenChanged: function(token, oldToken) {
+			if (oldToken) {
+				this.imageUrl = null;
+			}
+		},
 
 		_onImageUrlChange: function(imageUrl, token) {
 			if (imageUrl && token) {
