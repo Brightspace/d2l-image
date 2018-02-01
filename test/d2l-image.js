@@ -75,7 +75,7 @@ describe('<d2l-image>', function() {
 				expect(widget.$.image.src);
 			});
 
-			it('should fire a failed-to-load event if the request was not successful', function() {
+			it('should fire a failed-to-load event if the request was not successful', function(done) {
 				var response = {
 					detail: {
 						status: 404
@@ -83,11 +83,13 @@ describe('<d2l-image>', function() {
 				};
 
 				widget = fixture('d2l-image-fixture');
-				sinon.spy(widget, 'fire');
+				widget.addEventListener('d2l-image-failed-to-load', function(e) {
+					expect(!widget.$.image.src);
+					expect(e.detail.response).to.equal(response);
+					done();
+				});
 
 				widget._onImageResponse(response);
-				expect(!widget.$.image.src);
-				expect(widget.fire).to.have.been.calledWith('d2l-image-failed-to-load', response);
 			});
 		});
 	});

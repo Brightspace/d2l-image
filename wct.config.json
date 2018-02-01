@@ -1,7 +1,9 @@
 {
   "plugins":{
     "local":{
-      "browsers":["firefox"]
+      "browsers":[{
+        "browserName": "firefox"
+      }]
     }
   }
 }

@@ -65,7 +65,11 @@
 				var dataUrl = 'data:image/png;base64,' + base64;
 				this.$.image.src = dataUrl;
 			} else {
-				this.fire('d2l-image-failed-to-load', response);
+				this.dispatchEvent(new CustomEvent('d2l-image-failed-to-load', {
+					bubbles: true,
+					composed: true,
+					detail: { response: response }
+				}));
 			}
 		}
 	});
