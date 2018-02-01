@@ -1,8 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
 
-<script src="../base64-js/base64js.min.js"></script>
-
 <dom-module id="d2l-image">
 	<template>
 		<style>
@@ -22,7 +20,7 @@
 			headers="[[_headers]]"
 			on-iron-ajax-response="_onImageResponse"
 			on-iron-ajax-error="_onImageResponse"
-			handle-as="arraybuffer">
+			handle-as="blob">
 		</iron-ajax>
 
 		<img id="image" alt="{{alternateText}}"/>
@@ -60,10 +58,10 @@
 
 		_onImageResponse: function(response) {
 			if (response.detail.status === 200) {
-				var data = new Uint8Array(response.detail.response);
-				var base64 = base64js.fromByteArray(data);
-				var dataUrl = 'data:image/png;base64,' + base64;
-				this.$.image.src = dataUrl;
+				if (this.$.image.src) {
+					URL.revokeObjectURL(this.$.image.src);
+				}
+				this.$.image.src = URL.createObjectURL(response.detail.response);
 			} else {
 				this.fire('d2l-image-failed-to-load', response);
 			}
