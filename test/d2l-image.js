@@ -64,7 +64,7 @@ describe('<d2l-image>', function() {
 			it('should update image src attribute if the request is successful', function() {
 				var response = {
 					detail: {
-						response: new ArrayBuffer(8),
+						response: new Blob([], { type: 'image/jpeg' }),
 						status: 200
 					}
 				};
