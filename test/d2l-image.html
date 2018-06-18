@@ -1,30 +1,30 @@
 <!doctype html>
 <html>
-	<head>
+    <head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../web-component-tester/browser.js"></script>
+		<script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../node_modules/wct-browser-legacy/browser.js"></script>
 
-		<link rel="import" href="../d2l-image.html">
-	</head>
-	<body>
-		<test-fixture id="d2l-image-fixture">
-			<template>
-				<d2l-image
-					token=""
-					image-url=""
-				></d2l-image>
-			</template>
-		</test-fixture>
-		<test-fixture id="d2l-image-fixture-populated">
-			<template>
-				<d2l-image
-					token="My Token"
-					image-url="test123"
-				></d2l-image>
-			</template>
-		</test-fixture>
-		<script src="d2l-image.js"></script>
-	</body>
+		<script type="module" src="../d2l-image.js"></script>
+    </head>
+    <body>
+        <test-fixture id="d2l-image-fixture">
+            <template>
+                <d2l-image
+                    token=""
+                    image-url=""
+                ></d2l-image>
+            </template>
+        </test-fixture>
+        <test-fixture id="d2l-image-fixture-populated">
+            <template>
+                <d2l-image
+                    token="My Token"
+                    image-url="test123"
+                ></d2l-image>
+            </template>
+        </test-fixture>
+        <script src="./d2l-image.js"></script>
+    </body>
 </html>
