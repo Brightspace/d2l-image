@@ -7,6 +7,7 @@ addons:
 script:
 - npm run lint
 - xvfb-run polymer test --skip-plugin sauce
+- 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then xvfb-run polymer test --skip-plugin local; fi'
 env:
   global:
     - SAUCE_USERNAME: Desire2Learn
