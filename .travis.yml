@@ -4,7 +4,6 @@ dist: trusty
 sudo: required
 addons:
   chrome: stable
-  firefox: latest
 script:
 - npm run lint
 - xvfb-run polymer test --skip-plugin sauce
