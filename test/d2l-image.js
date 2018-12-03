@@ -61,7 +61,7 @@ describe('<d2l-image>', function() {
 		});
 
 		describe('Receiving a response', function() {
-			it('should update image src attribute if the request is successful', function() {
+			it('should update image src attribute and fire an image-loaded event if the request is successful', function() {
 				var response = {
 					detail: {
 						response: new Blob([], { type: 'image/jpeg' }),
@@ -70,9 +70,13 @@ describe('<d2l-image>', function() {
 				};
 
 				widget = fixture('d2l-image-fixture');
+				widget.addEventListener('d2l-image-loaded', function(e) {
+					expect(widget.$.image.src);
+					expect(e.detail.response).to.equal(response);
+					done();
+				});
 
 				widget._onImageResponse(response);
-				expect(widget.$.image.src);
 			});
 
 			it('should fire a failed-to-load event if the request was not successful', function(done) {

@@ -11,6 +11,8 @@
 			img {
 				width:100%;
 				height: 100%;
+				border-radius: var(--d2l-image-border-radius);
+				object-fit: var(--d2l-image-object-fit);
 			}
 		</style>
 
@@ -62,6 +64,11 @@
 					URL.revokeObjectURL(this.$.image.src);
 				}
 				this.$.image.src = URL.createObjectURL(response.detail.response);
+				this.dispatchEvent(new CustomEvent('d2l-image-loaded', {
+					bubbles: true,
+					composed: true,
+					detail: { response: response }
+				}));
 			} else {
 				this.dispatchEvent(new CustomEvent('d2l-image-failed-to-load', {
 					bubbles: true,
