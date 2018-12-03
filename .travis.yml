@@ -3,6 +3,7 @@ node_js: node
 dist: trusty
 addons:
   chrome: stable
+  firefox: latest
 script:
 - npm run lint
 - xvfb-run polymer test --skip-plugin sauce
