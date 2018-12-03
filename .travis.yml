@@ -1,21 +1,11 @@
 language: node_js
 node_js: node
 dist: trusty
-sudo: required
 addons:
-  firefox: latest
-  apt:
-    packages:
-    - gdebi
-    - oracle-java9-installer
-    - oracle-java9-set-default
+  chrome: stable
 script:
 - npm run lint
-- polymer test --skip-plugin local
-before_script:
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo gdebi --non-interactive google-chrome*.deb
+- xvfb-run polymer test --skip-plugin sauce
 env:
   global:
     - SAUCE_USERNAME: Desire2Learn
