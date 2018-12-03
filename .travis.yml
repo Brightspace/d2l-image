@@ -1,5 +1,14 @@
 language: node_js
 node_js: node
+dist: trusty
+sudo: required
+addons:
+  firefox: latest
+  apt:
+    packages:
+    - gdebi
+    - oracle-java9-installer
+    - oracle-java9-set-default
 script:
 - npm run lint
 - polymer test --skip-plugin local
