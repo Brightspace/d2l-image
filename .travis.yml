@@ -3,6 +3,11 @@ node_js: node
 script:
 - npm run lint
 - polymer test --skip-plugin local
+before_script:
+  - npm run test:lint:js
+  - export CHROME_BIN=/usr/bin/google-chrome
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo gdebi --non-interactive google-chrome*.deb
 env:
   global:
     - SAUCE_USERNAME: Desire2Learn
