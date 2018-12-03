@@ -1,7 +1,9 @@
 {
 	"plugins": {
 		"local": {
-			"browsers": ["chrome"]
+      "browsers": [{
+        "browserName": "chrome"
+      }]
 		},
 		"sauce": {
 			"browsers": [
