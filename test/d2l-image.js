@@ -61,7 +61,7 @@ describe('<d2l-image>', function() {
 		});
 
 		describe('Receiving a response', function() {
-			it('should update image src attribute and fire an image-loaded event if the request is successful', function() {
+			it('should update image src attribute and fire an image-loaded event if the request is successful', function(done) {
 				var response = {
 					detail: {
 						response: new Blob([], { type: 'image/jpeg' }),
