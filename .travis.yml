@@ -1,8 +1,13 @@
 language: node_js
 node_js: node
+dist: trusty
+sudo: required
+addons:
+  chrome: stable
 script:
 - npm run lint
-- polymer test --skip-plugin local
+- xvfb-run polymer test --skip-plugin sauce
+- 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then xvfb-run polymer test --skip-plugin local; fi'
 env:
   global:
     - SAUCE_USERNAME: Desire2Learn
