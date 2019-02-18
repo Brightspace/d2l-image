@@ -6,9 +6,14 @@ addons:
   chrome: stable
 script:
 - npm run lint
-- xvfb-run polymer test --skip-plugin sauce
-- if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then xvfb-run polymer test --skip-plugin
-  local; fi
+- |
+  if [ $TRAVIS_PULL_REQUEST != false ] && [ $TRAVIS_SECURE_ENV_VARS == true ]; then
+    echo "Pull request with secure environment variables, running Sauce tests...";
+    xvfb-run polymer test --skip-plugin local || travis_terminate 1;
+  else
+    echo "Not a pull request and/or no secure environment variables, running headless tests...";
+    xvfb-run polymer test --skip-plugin sauce || travis_terminate 1;
+  fi
 - |
   if [ "$TRAVIS_BRANCH" == "master" ] && [ $TRAVIS_PULL_REQUEST == false ]; then
     echo "Not a Pull Request and on branch master so bumping version";
