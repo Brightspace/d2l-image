@@ -21,9 +21,9 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-image">
 		<iron-ajax id="imageRequest" url="[[imageUrl]]" headers="[[_headers]]" on-iron-ajax-response="_onImageResponse" on-iron-ajax-error="_onImageResponse" handle-as="blob">
 		</iron-ajax>
 
-		<img id="image" alt="{{alternateText}}">
+		<img id="image" alt$="[[alternateText]]">
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
@@ -32,7 +32,10 @@ Polymer({
 	is: 'd2l-image',
 
 	properties: {
-		alternateText: String,
+		alternateText: {
+			type: String,
+			reflectToAttribute: true,
+		},
 		imageUrl: {
 			type: String,
 			value: null
