@@ -14,7 +14,8 @@
     "lint": "npm run lint:wc && npm run lint:js",
     "lint:js": "eslint . --ext .js,.html test/**/*.js test/**/*.html",
     "lint:wc": "polymer lint",
-    "test": "polymer test --skip-plugin sauce"
+    "test:local": "polymer test --skip-plugin sauce",
+    "test": "polymer test --skip-plugin local"
   },
   "bugs": {
     "url": "https://github.com/Brightspace/d2l-image/issues"
