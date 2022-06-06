@@ -1,0 +1,23 @@
+name: CI
+on: pull_request
+jobs:
+  test:
+    name: Lint/Test
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: Brightspace/third-party-actions@actions/checkout
+      - name: Set up node
+        uses: Brightspace/third-party-actions@actions/setup-node
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: npm i
+      - name: Lint
+        run: npm run lint
+      - name: Test (SauceLabs)
+        env:
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY_DESIRE2LEARN }}
+          SAUCE_USERNAME: Desire2Learn
+        run: npm run test
