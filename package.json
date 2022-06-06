@@ -29,8 +29,8 @@
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-sort-class-members": "^1.14.1",
     "polymer-cli": "^1.9.11",
-    "wct-browser-legacy": "^1.0.1",
-    "web-component-tester": "^6.4.1"
+    "wct-browser-legacy": "^1.0.2",
+    "web-component-tester": "^6.9.2"
   },
   "version": "3.3.0",
   "resolutions": {
