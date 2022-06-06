@@ -9,7 +9,7 @@
     "url": "git+https://github.com/Brightspace/d2l-image.git"
   },
   "homepage": "https://github.com/Brightspace/d2l-image#readme",
-  "name": "d2l-image",
+  "name": "@d2l/image",
   "scripts": {
     "lint": "npm run lint:wc && npm run lint:js",
     "lint:js": "eslint . --ext .js,.html test/**/*.js test/**/*.html",
