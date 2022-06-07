@@ -33,7 +33,7 @@
     "wct-browser-legacy": "^1.0.2",
     "web-component-tester": "^6.9.2"
   },
-  "version": "3.3.0",
+  "version": "3.3.1",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
