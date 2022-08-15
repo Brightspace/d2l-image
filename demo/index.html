@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="/node_modules/@brightspace-ui/core/components/demo/styles.css" type="text/css">
+		<script type="module">
+			import '@brightspace-ui/core/components/demo/demo-page.js';
+			import '../d2l-image.js';
+		</script>
+	</head>
+
+	<body unresolved>
+		<d2l-demo-page page-title="d2l-image">
+
+			<h2>Image without token</h2>
+			<d2l-demo-snippet>
+				<d2l-image alt-text="Photo of a moose" image-url="d2l-moose.png"></d2l-image>
+			</d2l-demo-snippet>
+
+			<h2>Image with token</h2>
+			<d2l-demo-snippet>
+				<d2l-image id="baha" alt-text="Photo of a moose" image-url="d2l-moose.png" token="bleh"></d2l-image>
+			</d2l-demo-snippet>
+		</d2l-demo-page>
+	</body>
+</html>
