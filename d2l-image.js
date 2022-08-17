@@ -70,8 +70,8 @@ class D2LImage extends LitElement {
 			this._imageUrl = URL.createObjectURL(blob);
 
 			this.dispatchEvent(new CustomEvent('d2l-image-loaded', {
-				bubbles: true,
-				composed: true,
+				bubbles: false,
+				composed: false,
 				detail: { response }
 			}));
 
@@ -79,8 +79,8 @@ class D2LImage extends LitElement {
 			this._imageUrl = this.imageUrl;
 
 			this.dispatchEvent(new CustomEvent('d2l-image-failed-to-load', {
-				bubbles: true,
-				composed: true,
+				bubbles: false,
+				composed: false,
 				detail: { response }
 			}));
 		}
