@@ -41,8 +41,8 @@ class D2LImage extends LitElement {
 
 	constructor() {
 		super();
-		this.imageUrl = '';
-		this.alternateText = '';
+		this.imageUrl = undefined;
+		this.alternateText = undefined;
 	}
 
 	render() {
@@ -62,7 +62,12 @@ class D2LImage extends LitElement {
 	}
 
 	async _loadImage() {
-		if (!this.imageUrl || !this.token) {
+		if (!this.token) {
+			this._imageUrl = this.imageUrl;
+			return;
+		}
+
+		if (!this.imageUrl) {
 			return;
 		}
 

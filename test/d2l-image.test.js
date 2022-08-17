@@ -38,8 +38,16 @@ describe('d2l-image', () => {
 				expect(fetchStub).to.not.have.been.called;
 			});
 
-			it('should send a request with an image url', async() => {
+			it('should not send a request without a token', async() => {
 				const el = await fixture(html`<d2l-image image-url="image.jpg"></d2l-image>`);
+
+				expect(el.token).to.be.undefined;
+				expect(fetchStub).to.not.have.been.called;
+
+			});
+
+			it('should send a request with an image url and token', async() => {
+				const el = await fixture(html`<d2l-image image-url="image.jpg" token="token"></d2l-image>`);
 
 				expect(el.imageUrl).to.equal('image.jpg');
 				expect(fetchStub).to.have.been.called;
@@ -54,7 +62,10 @@ describe('d2l-image', () => {
 
 				const el = await fixture(html`<d2l-image></d2l-image>`);
 
-				setTimeout(() => el.imageUrl = 'image4.jpg');
+				setTimeout(() => {
+					el.imageUrl = 'image4.jpg';
+					el.token = 'token';
+				});
 
 				const { detail } = await oneEvent(el, 'd2l-image-loaded');
 				expect(detail.response).to.equal(response);
@@ -70,7 +81,10 @@ describe('d2l-image', () => {
 
 				const el = await fixture(html`<d2l-image></d2l-image>`);
 
-				setTimeout(() => el.imageUrl = 'none.jpg');
+				setTimeout(() => {
+					el.imageUrl = 'none.jpg';
+					el.token = 'token';
+				});
 
 				const { detail } = await oneEvent(el, 'd2l-image-failed-to-load');
 				expect(detail.response).to.equal(response);
