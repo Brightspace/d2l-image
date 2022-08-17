@@ -54,7 +54,7 @@ describe('d2l-image', () => {
 
 				const el = await fixture(html`<d2l-image></d2l-image>`);
 
-				el.imageUrl = 'image4.jpg';
+				setTimeout(() => el.imageUrl = 'image4.jpg');
 
 				const { detail } = await oneEvent(el, 'd2l-image-loaded');
 				expect(detail.response).to.equal(response);
@@ -70,7 +70,7 @@ describe('d2l-image', () => {
 
 				const el = await fixture(html`<d2l-image></d2l-image>`);
 
-				el.imageUrl = 'none.jpg';
+				setTimeout(() => el.imageUrl = 'none.jpg');
 
 				const { detail } = await oneEvent(el, 'd2l-image-failed-to-load');
 				expect(detail.response).to.equal(response);
