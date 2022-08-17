@@ -18,7 +18,7 @@
     "lint:lit": "lit-analyzer \"{components,test}/**/*.js\" --strict --rules.no-unknown-tag-name off",
     "start": "web-dev-server --open demo/ --node-resolve --watch",
     "test": "npm run lint && npm run test:headless",
-    "test:headless": "web-test-runner --files ./test/**/*.test.js --node-resolve --group default"
+    "test:headless": "web-test-runner --files ./test/**/*.test.js --node-resolve"
   },
   "files": [
     "d2l-image.js"
