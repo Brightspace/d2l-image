@@ -1,7 +1,7 @@
 {
-  "name": "d2l-image",
+  "name": "@d2l/image",
   "version": "3.3.1",
-  "description": "A Polymer-based web component for images requiring authentication",
+  "description": "A Lit web component to render images requiring authentication",
   "keywords": [
     "d2l",
     "image"
