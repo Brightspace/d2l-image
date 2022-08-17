@@ -31,10 +31,10 @@ class D2LImage extends LitElement {
 			}
 
 			img {
-				width:100%;
-				height: 100%;
 				border-radius: var(--d2l-image-border-radius);
+				height: 100%;
 				object-fit: var(--d2l-image-object-fit);
+				width: 100%;
 			}
 		`;
 	}

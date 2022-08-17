@@ -13,9 +13,10 @@
   },
   "homepage": "https://github.com/Brightspace/d2l-image#readme",
   "scripts": {
-    "lint": "npm run lint:eslint && npm run lint:lit",
+    "lint": "npm run lint:eslint && npm run lint:style && npm run lint:lit",
     "lint:eslint": "eslint . --ext .js,.html",
     "lint:lit": "lit-analyzer \"{components,test}/**/*.js\" --strict --rules.no-unknown-tag-name off",
+    "lint:style": "stylelint \"**/*.{js,html}\"",
     "start": "web-dev-server --open demo/ --node-resolve --watch",
     "test": "npm run lint && npm run test:headless",
     "test:headless": "web-test-runner --files ./test/**/*.test.js --node-resolve"
@@ -32,7 +33,7 @@
     "@babel/core": "^7",
     "@babel/eslint-parser": "^7",
     "@brightspace-ui/core": "^2",
-    "@brightspace-ui/stylelint-config": "^0.4",
+    "@brightspace-ui/stylelint-config": "^0.6",
     "@open-wc/testing": "^3",
     "@web/dev-server": "^0.1",
     "@web/test-runner": "^0.14",
@@ -43,7 +44,8 @@
     "eslint-plugin-lit": "^1",
     "eslint-plugin-sort-class-members": "^1",
     "lit-analyzer": "^1",
-    "sinon": "^13"
+    "sinon": "^13",
+    "stylelint": "^14"
   },
   "dependencies": {
     "d2l-fetch": "^2",
