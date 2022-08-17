@@ -47,7 +47,6 @@
   },
   "dependencies": {
     "d2l-fetch": "^2",
-    "d2l-fetch-auth": "^1",
     "lit": "^2"
   }
 }

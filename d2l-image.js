@@ -1,6 +1,5 @@
 import 'd2l-fetch/d2l-fetch.js';
 import { css, html, LitElement, nothing } from 'lit';
-import { auth } from 'd2l-fetch-auth/d2l-fetch-auth.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 class D2LImage extends LitElement {
@@ -10,12 +9,17 @@ class D2LImage extends LitElement {
 			 * Alternate text describing the image
 			 * @type {string}
 			 */
-			altText: { type: String, attribute: 'alt-text' },
+			alternateText: { type: String, attribute: 'alternate-text' },
 			/**
 			 * URL of the image
 			 * @type {string}
 			 */
 			imageUrl: { type: String, attribute: 'image-url' },
+			/**
+			 * token used to authenticate the image retrieval
+			 * @type {string}
+			 */
+			token: { type: String },
 			_imageUrl: { state: true }
 		};
 	}
@@ -37,7 +41,8 @@ class D2LImage extends LitElement {
 
 	constructor() {
 		super();
-		window.d2lfetch.use({ name: 'auth', fn: auth });
+		this.imageUrl = '';
+		this.alternateText = '';
 	}
 
 	render() {
@@ -46,25 +51,39 @@ class D2LImage extends LitElement {
 		}
 
 		return html`
-			<img alt="${this.altText}" src="${ifDefined(this._imageUrl)}">
+			<img alt="${this.alternateText}" src="${ifDefined(this._imageUrl)}">
 		`;
 	}
 
 	updated(changedProperties) {
-		if (changedProperties.has('imageUrl')) {
+		if (changedProperties.has('imageUrl') || changedProperties.has('token')) {
 			this._loadImage();
 		}
 	}
 
 	async _loadImage() {
-		if (!this.imageUrl) {
+		if (!this.imageUrl || !this.token) {
 			return;
 		}
 
 		let response;
 
 		try {
-			response = await window.d2lfetch.fetch(this.imageUrl);
+			const tokenPromise = await (typeof (this.token) === 'function')
+				? this.token()
+				: Promise.resolve(this.token);
+
+			const tokenString = await tokenPromise;
+
+			const headers = new Headers();
+			if (tokenString) {
+				headers.append('Authorization', `Bearer ${tokenString}`);
+			}
+
+			response = await window.d2lfetch
+				.removeTemp('simple-cache')
+				.removeTemp('dedupe')
+				.fetch(this.imageUrl, { method: 'GET', headers });
 
 			const blob = await response.blob();
 			this._imageUrl = URL.createObjectURL(blob);
