@@ -15,14 +15,7 @@ class D2LImage extends LitElement {
 			 * @type {string}
 			 */
 			imageUrl: { type: String, attribute: 'image-url' },
-			/**
-			 * token used to authenticate the image retrieval
-			 * @type {string}
-			 */
-			token: { type: String },
-			_headers: { type: String, state: true },
-			_href: { type: String, state: true },
-			_imageUrl: { type: String, state: true }
+			_imageUrl: { state: true }
 		};
 	}
 
