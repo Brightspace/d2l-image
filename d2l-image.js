@@ -1,5 +1,6 @@
 import 'd2l-fetch/d2l-fetch.js';
 import { css, html, LitElement, nothing } from 'lit';
+import { auth } from 'd2l-fetch-auth/d2l-fetch-auth.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 class D2LImage extends LitElement {
@@ -36,9 +37,7 @@ class D2LImage extends LitElement {
 
 	constructor() {
 		super();
-		this.imageUrl = undefined;
-		this.token = undefined;
-		this._loadImage();
+		window.d2lfetch.use({ name: 'auth', fn: auth });
 	}
 
 	render() {
@@ -52,34 +51,20 @@ class D2LImage extends LitElement {
 	}
 
 	updated(changedProperties) {
-		if (changedProperties.has('imageUrl') || changedProperties.has('token')) {
+		if (changedProperties.has('imageUrl')) {
 			this._loadImage();
 		}
 	}
 
 	async _loadImage() {
-		if (!this.imageUrl || !this.token) {
+		if (!this.imageUrl) {
 			return;
 		}
 
 		let response;
 
 		try {
-			const tokenPromise = await (typeof (this.token) === 'function')
-				? this.token()
-				: Promise.resolve(this.token);
-
-			const tokenString = await tokenPromise;
-
-			const headers = new Headers();
-			if (tokenString) {
-				headers.append('Authorization', `Bearer ${tokenString}`);
-			}
-
-			response = await window.d2lfetch
-				.removeTemp('simple-cache')
-				.removeTemp('dedupe')
-				.fetch(this.imageUrl, { method: 'GET', headers });
+			response = await window.d2lfetch.fetch(this.imageUrl);
 
 			const blob = await response.blob();
 			this._imageUrl = URL.createObjectURL(blob);
