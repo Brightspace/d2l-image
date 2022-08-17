@@ -1,5 +1,5 @@
 import 'd2l-fetch/d2l-fetch.js';
-import { css, html, LitElement } from 'lit';
+import { css, html, LitElement, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 class D2LImage extends LitElement {
@@ -42,6 +42,10 @@ class D2LImage extends LitElement {
 	}
 
 	render() {
+		if (!this._imageUrl) {
+			return nothing;
+		}
+
 		return html`
 			<img alt="${this.altText}" src="${ifDefined(this._imageUrl)}">
 		`;
