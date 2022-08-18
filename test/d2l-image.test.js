@@ -34,7 +34,8 @@ describe('d2l-image', () => {
 			it('should not send a request without an image url', async() => {
 				const el = await fixture(html`<d2l-image></d2l-image>`);
 
-				expect(el.imageUrl).to.be.undefined;
+				expect(el.imageUrl).to.equal('');
+				expect(el.alternateText).to.equal('');
 				expect(fetchStub).to.not.have.been.called;
 			});
 

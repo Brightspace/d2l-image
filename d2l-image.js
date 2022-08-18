@@ -41,8 +41,9 @@ class D2LImage extends LitElement {
 
 	constructor() {
 		super();
-		this.imageUrl = undefined;
-		this.alternateText = undefined;
+		this.imageUrl = '';
+		this.alternateText = '';
+		this.token = undefined;
 	}
 
 	render() {
