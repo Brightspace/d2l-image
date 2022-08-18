@@ -48,7 +48,6 @@
     "stylelint": "^14"
   },
   "dependencies": {
-    "d2l-fetch": "^2",
     "lit": "^2"
   }
 }

@@ -1,4 +1,3 @@
-import 'd2l-fetch/d2l-fetch.js';
 import { css, html, LitElement, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
@@ -86,10 +85,7 @@ class D2LImage extends LitElement {
 				headers.append('Authorization', `Bearer ${tokenString}`);
 			}
 
-			response = await window.d2lfetch
-				.removeTemp('simple-cache')
-				.removeTemp('dedupe')
-				.fetch(this.imageUrl, { method: 'GET', headers });
+			response = await window.fetch(this.imageUrl, { method: 'GET', headers });
 
 			const blob = await response.blob();
 			this._imageUrl = URL.createObjectURL(blob);
