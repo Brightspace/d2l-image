@@ -62,12 +62,12 @@ class D2LImage extends LitElement {
 	}
 
 	async _loadImage() {
-		if (!this.token) {
-			this._imageUrl = this.imageUrl;
+		if (!this.imageUrl) {
 			return;
 		}
 
-		if (!this.imageUrl) {
+		if (!this.token) {
+			this._imageUrl = this.imageUrl;
 			return;
 		}
 
