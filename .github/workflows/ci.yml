@@ -11,13 +11,13 @@ jobs:
       - name: Set up node
         uses: Brightspace/third-party-actions@actions/setup-node
         with:
-          node-version: 14
+          node-version-file: .nvmrc
       - name: Install dependencies
-        run: npm i
+        run: |
+          npm i
+          npm i @web/test-runner-playwright --no-save
+          npx playwright install-deps
       - name: Lint
         run: npm run lint
-      - name: Test (SauceLabs)
-        env:
-          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY_DESIRE2LEARN }}
-          SAUCE_USERNAME: Desire2Learn
-        run: npm run test
+      - name: Test (Cross Browser)
+        run: npx web-test-runner --files ./test/**/*.test.js --node-resolve --playwright --browsers chromium firefox webkit
