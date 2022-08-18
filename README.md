@@ -1,22 +1,8 @@
 # d2l-image
 
-[![Build Status](https://travis-ci.org/Brightspace/d2l-image.svg?branch=master)](https://travis-ci.org/Brightspace/d2l-image)
+[![CI](https://github.com/Brightspace/d2l-image/actions/workflows/ci.yml/badge.svg)](https://github.com/Brightspace/d2l-image/actions/workflows/ci.yml)
 
-A [Polymer](https://www.polymer-project.org)-based web component for displaying images that require authentication.
-
-## Installation
-
-Clone the repo and install npm and bower dependencies:
-
-```sh
-npm install
-```
-
-Run tests:
-
-```sh
-npm test
-```
+Web component for displaying images that require authentication.
 
 ## Usage
 
@@ -30,15 +16,58 @@ npm test
 
 When both `image-url` and `token` are non-null, `d2l-image` will load the image.
 
-## Coding styles
+## Developing
 
-Follow the [EditorConfig](http://editorconfig.org) rules used in this repo.
+After cloning the repo, run `npm install` to install dependencies.
 
-## Versioning
+### Running the demos
 
-Commits and PR merges to master will automatically do a minor version bump which will:
-* Update the version in `package.json`
-* Add a tag matching the new version
-* Create a github release matching the new version
+Start a [@web/dev-server](https://modern-web.dev/docs/dev-server/overview/) that hosts the demo pages:
 
-By using either **[increment major]** or **[increment patch]** notation inside your merge message, you can overwrite the default version upgrade of minor to the position of your choice.
+```shell
+npm start
+```
+
+### Linting
+
+```shell
+# eslint, lit-analyzer
+npm run lint
+
+# eslint only
+npm run lint:eslint
+
+# lit-analyzer only
+npm run lint:lit
+```
+
+### Testing
+
+```shell
+# lint and unit tests
+npm test
+
+# unit tests
+npm run test:headless
+```
+
+## Versioning & Releasing
+
+> TL;DR: Commits prefixed with `fix:` and `feat:` will trigger patch and minor releases when merged to `main`. Read on for more details...
+
+The [semantic-release GitHub Action](https://github.com/BrightspaceUI/actions/tree/main/semantic-release) is called from the `release.yml` GitHub Action workflow to handle version changes and releasing.
+
+### Version Changes
+
+All version changes should obey [semantic versioning](https://semver.org/) rules:
+1. **MAJOR** version when you make incompatible API changes,
+2. **MINOR** version when you add functionality in a backwards compatible manner, and
+3. **PATCH** version when you make backwards compatible bug fixes.
+
+The next version number will be determined from the commit messages since the previous release. Our semantic-release configuration uses the [Angular convention](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular) when analyzing commits:
+* Commits which are prefixed with `fix:` or `perf:` will trigger a `patch` release. Example: `fix: validate input before using`
+* Commits which are prefixed with `feat:` will trigger a `minor` release. Example: `feat: add toggle() method`
+* To trigger a MAJOR release, include `BREAKING CHANGE:` with a space or two newlines in the footer of the commit message
+* Other suggested prefixes which will **NOT** trigger a release: `build:`, `ci:`, `docs:`, `style:`, `refactor:` and `test:`. Example: `docs: adding README for new component`
+
+To revert a change, add the `revert:` prefix to the original commit message. This will cause the reverted change to be omitted from the release notes. Example: `revert: fix: validate input before using`.
