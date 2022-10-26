@@ -20,4 +20,4 @@ jobs:
       - name: Lint
         run: npm run lint
       - name: Test (Cross Browser)
-        run: npx web-test-runner --files ./test/**/*.test.js --node-resolve --playwright --browsers chromium firefox webkit
+        run: npx web-test-runner --files "./test/**/*.test.js" --node-resolve --playwright --browsers chromium firefox webkit
