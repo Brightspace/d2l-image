@@ -36,7 +36,7 @@
     "@brightspace-ui/stylelint-config": "^0.8",
     "@open-wc/testing": "^3",
     "@web/dev-server": "^0.2",
-    "@web/test-runner": "^0.16",
+    "@web/test-runner": "^0.17",
     "eslint": "^8",
     "eslint-config-brightspace": "^0.23",
     "eslint-plugin-html": "^7",
