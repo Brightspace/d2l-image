@@ -48,6 +48,6 @@
     "stylelint": "^15"
   },
   "dependencies": {
-    "lit": "^2"
+    "lit": "^3"
   }
 }
