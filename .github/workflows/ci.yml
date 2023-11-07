@@ -16,7 +16,7 @@ jobs:
         run: |
           npm i
           npm i @web/test-runner-playwright --no-save
-          npx playwright install-deps
+          npx playwright install --with-deps
       - name: Lint
         run: npm run lint
       - name: Test (Cross Browser)
