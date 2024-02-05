@@ -45,7 +45,7 @@
     "eslint-plugin-sort-class-members": "^1",
     "lit-analyzer": "^2",
     "sinon": "^17",
-    "stylelint": "^15"
+    "stylelint": "^16"
   },
   "dependencies": {
     "lit": "^2"
