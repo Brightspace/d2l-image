@@ -1,6 +1,6 @@
 {
   "name": "d2l-image",
-  "version": "3.6.0",
+  "version": "4.0.0",
   "description": "A Lit web component to render images requiring authentication",
   "keywords": [
     "d2l",
