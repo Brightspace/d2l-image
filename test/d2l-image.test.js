@@ -1,5 +1,5 @@
 import '../d2l-image.js';
-import { expect, fixture, html, oneEvent } from '@open-wc/testing';
+import { expect, fixture, html, oneEvent } from '@brightspace-ui/testing';
 import { stub } from 'sinon';
 
 describe('d2l-image', () => {
