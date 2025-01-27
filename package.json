@@ -19,7 +19,7 @@
     "lint:style": "stylelint \"**/*.{js,html}\"",
     "start": "web-dev-server --open demo/ --node-resolve --watch",
     "test": "npm run lint && npm run test:headless",
-    "test:headless": "web-test-runner --files \"./test/**/*.test.js\" --node-resolve"
+    "test:headless": "d2l-test-runner"
   },
   "files": [
     "d2l-image.js"
@@ -34,9 +34,9 @@
     "@babel/eslint-parser": "^7",
     "@brightspace-ui/core": "^3",
     "@brightspace-ui/stylelint-config": "^0.8",
+    "@brightspace-ui/testing": "^1.27.0",
     "@open-wc/testing": "^4",
     "@web/dev-server": "^0.4",
-    "@web/test-runner": "^0.18",
     "eslint": "^8",
     "eslint-config-brightspace": "^1.1",
     "eslint-plugin-html": "^7",
