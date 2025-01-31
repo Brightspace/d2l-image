@@ -1,4 +1,4 @@
-import { css, html, LitElement, nothing } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 class D2LImage extends LitElement {
@@ -35,6 +35,19 @@ class D2LImage extends LitElement {
 				object-fit: var(--d2l-image-object-fit);
 				width: 100%;
 			}
+
+			.image {
+				max-width: 35px;
+				max-height: 35px;
+				margin-inline-end: 15px;
+				border-radius: 0.2rem;
+				overflow: hidden;
+			}
+
+			.image.placeholder {
+				--d2l-icon-height: 100%;
+				--d2l-icon-width: 100%;
+			}
 		`;
 	}
 
@@ -47,7 +60,9 @@ class D2LImage extends LitElement {
 
 	render() {
 		if (!this._imageUrl) {
-			return nothing;
+			return html`
+				<d2l-icon icon="d2l-tier3:profile-pic" class="image placeholder" aria-label="asdasd"></d2l-icon>
+			`;
 		}
 
 		return html`
