@@ -78,16 +78,12 @@ class D2LImage extends LitElement {
 
 	async _loadImage() {
 		if (!this.imageUrl) {
-			return html`
-				<d2l-icon icon="d2l-tier3:profile-pic" class="image placeholder" aria-label="asdasd"></d2l-icon>
-			`;
+			return;
 		}
 
 		if (!this.token) {
 			this._imageUrl = this.imageUrl;
-			return html`
-				<d2l-icon icon="d2l-tier3:profile-pic" class="image placeholder" aria-label="asdasd"></d2l-icon>
-			`;
+			return;
 		}
 
 		let response;
