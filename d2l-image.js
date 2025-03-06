@@ -19,6 +19,11 @@ class D2LImage extends LitElement {
 			 * @type {string}
 			 */
 			token: { type: String },
+			/**
+			 * URL of the image to display while waiting for imageUrl to load
+			 * @type {string}
+			 */
+			defaultImage: { type: String, attribute: 'default-image-url' },
 			_imageUrl: { state: true }
 		};
 	}
@@ -42,12 +47,17 @@ class D2LImage extends LitElement {
 		super();
 		this.imageUrl = '';
 		this.alternateText = '';
+		this.defaultImage = '';
 		this.token = undefined;
 	}
 
 	render() {
 		if (!this._imageUrl) {
-			return nothing;
+			if (this.defaultImage) {
+				return html `<img alt="${this.alternateText}" src="${this.defaultImage}"></img>`;
+			} else {
+				return nothing;
+			}
 		}
 
 		return html`
