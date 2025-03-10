@@ -30,7 +30,7 @@ class D2LImage extends SkeletonMixin(LitElement) {
 				display: block;
 			}
 
-			img, div {
+			img {
 				border-radius: var(--d2l-image-border-radius);
 				height: 100%;
 				object-fit: var(--d2l-image-object-fit);
@@ -48,10 +48,6 @@ class D2LImage extends SkeletonMixin(LitElement) {
 	}
 
 	render() {
-		if (!this._imageUrl) {
-			return html `<div class="d2l-skeletize"/>`; 
-		}
-
 		return html`
 			<img class="d2l-skeletize" alt="${this.alternateText}" src="${ifDefined(this._imageUrl)}">
 		`;
