@@ -1,7 +1,8 @@
 import { css, html, LitElement, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 
-class D2LImage extends LitElement {
+class D2LImage extends SkeletonMixin(LitElement) {
 	static get properties() {
 		return {
 			/**
@@ -19,49 +20,40 @@ class D2LImage extends LitElement {
 			 * @type {string}
 			 */
 			token: { type: String },
-			/**
-			 * URL of the image to display while waiting for imageUrl to load
-			 * @type {string}
-			 */
-			defaultImage: { type: String, attribute: 'default-image-url' },
 			_imageUrl: { state: true }
 		};
 	}
 
 	static get styles() {
-		return css`
+		return [ super.styles, css`
 			:host {
 				display: block;
 			}
 
-			img {
+			img, div {
 				border-radius: var(--d2l-image-border-radius);
 				height: 100%;
 				object-fit: var(--d2l-image-object-fit);
 				width: 100%;
 			}
-		`;
+		`];
 	}
 
 	constructor() {
 		super();
 		this.imageUrl = '';
 		this.alternateText = '';
-		this.defaultImage = '';
 		this.token = undefined;
+		this.skeleton = true;
 	}
 
 	render() {
 		if (!this._imageUrl) {
-			if (this.defaultImage) {
-				return html `<img alt="${this.alternateText}" src="${this.defaultImage}"></img>`;
-			} else {
-				return nothing;
-			}
+			return html `<div class="d2l-skeletize"/>`; 
 		}
 
 		return html`
-			<img alt="${this.alternateText}" src="${ifDefined(this._imageUrl)}">
+			<img class="d2l-skeletize" alt="${this.alternateText}" src="${ifDefined(this._imageUrl)}">
 		`;
 	}
 
@@ -99,6 +91,7 @@ class D2LImage extends LitElement {
 
 			const blob = await response.blob();
 			this._imageUrl = URL.createObjectURL(blob);
+			this.skeleton = false;
 
 			this.dispatchEvent(new CustomEvent('d2l-image-loaded', {
 				bubbles: false,
