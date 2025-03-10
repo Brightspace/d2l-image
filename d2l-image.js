@@ -1,4 +1,4 @@
-import { css, html, LitElement, nothing } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 
