@@ -1,7 +1,8 @@
-import { css, html, LitElement, nothing } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 
-class D2LImage extends LitElement {
+class D2LImage extends SkeletonMixin(LitElement) {
 	static get properties() {
 		return {
 			/**
@@ -24,7 +25,7 @@ class D2LImage extends LitElement {
 	}
 
 	static get styles() {
-		return css`
+		return [ super.styles, css`
 			:host {
 				display: block;
 			}
@@ -35,7 +36,7 @@ class D2LImage extends LitElement {
 				object-fit: var(--d2l-image-object-fit);
 				width: 100%;
 			}
-		`;
+		`];
 	}
 
 	constructor() {
@@ -43,15 +44,12 @@ class D2LImage extends LitElement {
 		this.imageUrl = '';
 		this.alternateText = '';
 		this.token = undefined;
+		this.skeleton = true;
 	}
 
 	render() {
-		if (!this._imageUrl) {
-			return nothing;
-		}
-
 		return html`
-			<img alt="${this.alternateText}" src="${ifDefined(this._imageUrl)}">
+			<img class="d2l-skeletize" alt="${this.alternateText}" src="${ifDefined(this._imageUrl)}">
 		`;
 	}
 
@@ -89,6 +87,7 @@ class D2LImage extends LitElement {
 
 			const blob = await response.blob();
 			this._imageUrl = URL.createObjectURL(blob);
+			this.skeleton = false;
 
 			this.dispatchEvent(new CustomEvent('d2l-image-loaded', {
 				bubbles: false,
