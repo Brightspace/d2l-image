@@ -4,7 +4,7 @@ jobs:
   test:
     name: Lint/Test
     timeout-minutes: 5
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, AWS]
     steps:
       - name: Checkout
         uses: Brightspace/third-party-actions@actions/checkout
