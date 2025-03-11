@@ -13,10 +13,7 @@ jobs:
         with:
           node-version-file: .nvmrc
       - name: Install dependencies
-        run: |
-          npm i
-          npm i @web/test-runner-playwright --no-save
-          npx playwright install --with-deps
+        run: npm i
       - name: Lint
         run: npm run lint
       - name: Test (Cross Browser)
