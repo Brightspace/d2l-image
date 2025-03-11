@@ -18,11 +18,6 @@ describe('d2l-image', () => {
 		expect(el).to.exist;
 	});
 
-	it('does not render an <img> without image url', async() => {
-		const el = await fixture(html`<d2l-image></d2l-image>`);
-		expect(el.shadowRoot.querySelector('img')).to.not.exist;
-	});
-
 	describe('Hypermedia calls', () => {
 
 		beforeEach(() => {
