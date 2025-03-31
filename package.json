@@ -43,7 +43,7 @@
     "eslint-plugin-lit": "^1",
     "eslint-plugin-sort-class-members": "^1",
     "lit-analyzer": "^2",
-    "sinon": "^19",
+    "sinon": "^20",
     "stylelint": "^15"
   },
   "dependencies": {
