@@ -40,7 +40,7 @@
     "eslint-config-brightspace": "^1.1",
     "eslint-plugin-html": "^7",
     "eslint-plugin-import": "^2",
-    "eslint-plugin-lit": "^1",
+    "eslint-plugin-lit": "^2",
     "eslint-plugin-sort-class-members": "^1",
     "lit-analyzer": "^2",
     "sinon": "^19",
