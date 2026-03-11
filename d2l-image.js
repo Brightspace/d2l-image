@@ -49,7 +49,7 @@ class D2LImage extends SkeletonMixin(LitElement) {
 
 	render() {
 		return html`
-			<img class="d2l-skeletize" alt="${this.alternateText}" src="${ifDefined(this._imageUrl)}">
+			<img class="d2l-skeletize" alt="${this.alternateText}" src="${ifDefined(this._imageUrl)}" >
 		`;
 	}
 
@@ -83,7 +83,12 @@ class D2LImage extends SkeletonMixin(LitElement) {
 				headers.append('Authorization', `Bearer ${tokenString}`);
 			}
 
-			response = await window.fetch(this.imageUrl, { method: 'GET', headers });
+			const fetchOptions = { method: 'GET', headers };
+			if (tokenString) {
+				fetchOptions.credentials = 'omit';
+			}
+
+			response = await window.fetch(this.imageUrl, fetchOptions);
 
 			const blob = await response.blob();
 			this._imageUrl = URL.createObjectURL(blob);
